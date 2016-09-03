@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Texas Paddling Trails</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 
     <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
@@ -59,7 +59,7 @@
         background: #229A00;
         color: whitesmoke;
         font-weight: 400;
-        font-size: 2.5em;
+        font-size: 1.5em;
         text-align: center;
     }
     h2 {
@@ -109,6 +109,11 @@
         left: 15px;
         bottom: 45px;
     }
+        #location {
+            position: absolute;
+            left: 15px;
+            bottom: 100px;
+        }
     
     </style>
 </head>
@@ -135,10 +140,13 @@
             </ul>
     </div>
     <div id='button'>
-        <button type="button"><h4>Find Closest Trail</h4></button>
+        <button onclick="findClosest()"><h4>Find Closest Trail</h4></button>
         </div>
+    <div id="location" class="u-padding-m"></div>
 
     <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
+    
     <script type="cartocss/html" id="trails">
     /** simple visualization */
 
@@ -200,20 +208,7 @@
             ]
         }
         
-        cartodb.createLayer(map, trails).addTo(map);
-        
-        var accessPoints = {
-            user_name: 'rogersm620',
-            type: 'cartodb',
-            sublayers: [
-                {
-                    sql: "SELECT * FROM access_points",
-                    cartocss: $("#accessPoints").text()
-                }
-            ]
-        }
-        
-        cartodb.createLayer(map, accessPoints).addTo(map)
+        cartodb.createLayer(map, trails).addTo(map)
 //            .on('done', function(layer) {
 //            cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(0), ['name', 'seg_start', 'seg_end']); 
 //            layer.setInteraction(true);
@@ -226,6 +221,38 @@
 //                 fields: [{ name: 'name' }]
 //               }); 
 //          });
+        
+        var accessPoints = {
+            user_name: 'rogersm620',
+            type: 'cartodb',
+            sublayers: [
+                {
+                    sql: "SELECT * FROM access_points",
+                    cartocss: $("#accessPoints").text()
+                }
+            ]
+        }
+        cartodb.createLayer(map, accessPoints).addTo(map);
+            
+        
+        function findClosest() {
+                if(navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
+                        map.setView([position.coords.latitude, position.coords.longitude], 8);
+                        console.log("hola");
+                })
+                } else {
+        // Browser doesn't support Geolocation
+                    console.log("Geolocation is disabled");
+                }
+                }
+                
+            
+//          function showPosition(position) {
+//              $('#location').html("<p>Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude + "</p>");
+//              map.setView([position.coords.latitude,position.coords.longitude],5);
+//          };
         
         
 
