@@ -209,6 +209,7 @@
         var trails = {
             user_name: 'rogersm620',
             type: 'cartodb',
+            interaction: true,
             sublayers: [
                 {
                     sql: "SELECT * FROM trails_wgs84",
@@ -217,7 +218,8 @@
             ]
         }
         
-        cartodb.createLayer(map, trails).addTo(map)
+        var trailLayer = cartodb.createLayer(map, trails).addTo(map);
+            
 //            .on('done', function(layer) {
 //            cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(0), ['name', 'seg_start', 'seg_end']); 
 //            layer.setInteraction(true);
@@ -241,7 +243,11 @@
                 }
             ]
         }
-        cartodb.createLayer(map, accessPoints).addTo(map);
+        var accessLayer = cartodb.createLayer(map, accessPoints).addTo(map);
+        
+        
+            
+        
         console.log(trails);      //<--not what I was hoping.
         
         function findClosest() {
@@ -258,7 +264,7 @@
                         
                         console.log(currentPosition); //does function have data?
                         
-                        var gj = L.geoJson(trails.sublayers); //load trails data
+                        var gj = L.geoJson(trailLayer); //load trails data
                         
                         var index = leafletKnn(gj).nearestLayer(L.latLng(currentPosition), 1, 1000000);      //pass position latLng, number or returns desired, max_distance
                         
