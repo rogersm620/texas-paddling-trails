@@ -6,8 +6,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 
     <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
-    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
     
     <style>
     html, body, #map {
@@ -17,7 +16,7 @@
         background: whitesmoke;
     }
     body {
-        font-family: 'Anton', sans-serif;
+        font-family: 'Merriweather', serif;
         background: whitesmoke;
     }
     div.cartodb-tooltip {
@@ -37,32 +36,30 @@
             background: white;
     }
     #map { 
-        position: absolute; 
+        position:absolute; 
         left:0; 
         bottom:0;
         right: 0;
-        height:100%; 
+        height:85%; 
         background: whitesmoke;
     }
     #top-panel {
         position: absolute;
-        left: 15px;
-        top: 10px;
-        right: 75px;
-        height: 106px;
-        background: none;
-        border-right: 0px solid #b08d67;
+        left: 0;
+        top: 0;
+        right: 0;
+        height: 15%;
+        background: #229A00;
+        border-right: 2px solid #b08d67;
         overflow-y: scroll;
-        z-index: 100;
     }
     h1 {
-        padding: 15px 25px 8px 15px;
+        padding: 8px 25px 8px 15px;
         margin: 0;
-        background: none;
-        color: #0951a1;
-        text-shadow: 2px 2px 2px #FFF; 
+        background: #229A00;
+        color: whitesmoke;
         font-weight: 400;
-        font-size: 1.9em;
+        font-size: 1.5em;
         text-align: center;
     }
     h2 {
@@ -92,10 +89,7 @@
     }
     #top-panel img {
         float: left;
-        margin: 0 0 0 0;
-    }
-    .cartodb-logo {
-        display:none!important;
+        margin: 15px 15px 15px 15px;
     }
     a {
         color: #1C9976;
@@ -136,11 +130,11 @@
         <div class="legend-title">Legend</div>
             <ul>
 	            <li>
-		          <div class="bullet" style="background:#d46a6a"></div>
+		          <div class="bullet" style="background:#229A00"></div>
 		              Access Point
 	            </li>
                 <li>
-		          <div class="bullet" style="background:#801515"></div>
+		          <div class="bullet" style="background:#F11810"></div>
 		              Paddling Trail
 	            </li>
             </ul>
@@ -159,22 +153,14 @@
 
     <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
-    
+    <script src="scripts/leaflet-knn.min.js"></script>
     
     
     <script type="cartocss/html" id="trails">
     /** simple visualization */
+
         #trails_wgs84{
-            line-color: #801515;
-            line-width: 5;
-            line-opacity: 0.8;
-            line-dasharray: 7,3;
-        }
-    </script>
-    <script type="cartocss/html" id="trailsSelect">
-    /** simple visualization */
-        trailsSelect{
-            line-color: #FFFF00;
+            line-color: #F11810;
             line-width: 5;
             line-opacity: 0.5;
             line-dasharray: 7,3;
@@ -182,6 +168,7 @@
     </script>
     <script type="cartocss/html" id="accessPoints">
     /** simple visualization */
+
         #access_points{
             marker-fill-opacity: 0.8;
             marker-line-color: #FFF;
@@ -190,7 +177,7 @@
             marker-placement: point;
             marker-type: ellipse;
             marker-width: 11;
-            marker-fill: #d46a6a;
+            marker-fill: #229A00;
             marker-allow-overlap: true;
         }
     </script>
@@ -199,7 +186,7 @@
     <script>
         
         var baseLayer = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.{ext}', {
-	       attribution: 'This map was created by <a href="http://campfiremapping.com">Ryan Rogers</a>, 2016...Tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+	       attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 	       subdomains: 'abcd',
 	       minZoom: 0,
 	       maxZoom: 18,
@@ -209,37 +196,42 @@
         
         var map = L.map('map', { 
             scrollWheelZoom: false,
-            zoomControl: false,
             dragging: true,
             touchZoom: true,
             center: [31.62, -96.49], 
             zoom: 7 
-        });
-        
-        L.control.zoom({position:'topright'}).addTo(map);
+        });  
         
         map.addLayer(baseLayer);
         
-        var layerUrl = 'https://rogersm620.carto.com/api/v2/viz/cdecec02-7125-11e6-b0bf-0e3ebc282e83/viz.json';
+        var layerUrl = 'https://rogersm620.carto.com/api/v2/viz/cdecec02-7125-11e6-b0bf-0e3ebc282e83/viz.json'
         
-        var sublayers = [];
-        
-        cartodb.createLayer(map, layerUrl).addTo(map)
-            .on('done', function(layer){
+        var trails = []
             
+        $.getJSON('https://rogersm620.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT * FROM    trails_wgs84', function(trailsData) {
+            
+            console.log(trailsData); // view geojson data here!
+            
+            trails.push(trailsData.features);
 
-            var subLayerOptions = {
-                    sql: "SELECT * FROM trails_wgs84",
-                    cartocss: $("#trails").text()
-                }
-       
-                var sublayer = layer.getSubLayer(0);
+            L.geoJson(trailsData).addTo(map); //make map  
             
-                sublayer.set(subLayerOptions);
-                sublayers.push(sublayer);
-                }).on('error', function() {       //error
-                
-                });
+        });
+        
+        console.log(trails);
+            
+//            .on('done', function(layer) {
+//            cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(0), ['name', 'seg_start', 'seg_end']); 
+//            layer.setInteraction(true);
+//            var sublayer = layer.getSubLayer(0);
+//            layer.leafletMap.viz.addOverlay({
+//                 type: 'tooltip',
+//                 layer: sublayer,
+//                 template: '<div class="cartodb-tooltip-content-wrapper"><h4>Trail Name</h4><p>{{name}}</p><h4>Starting City</h4><p>{{seg_start}}</p><h4>Ending City</h4><p>{{seg_end}}</p></div>', 
+//                 position: 'bottom|right',
+//                 fields: [{ name: 'name' }]
+//               }); 
+//          });
         
         var accessPoints = {
             user_name: 'rogersm620',
@@ -251,61 +243,52 @@
                 }
             ]
         }
-        cartodb.createLayer(map, accessPoints).addTo(map);
+        var accessLayer = cartodb.createLayer(map, accessPoints).addTo(map);
         
-        
-        function mapUserLoc(position) {
-            lon = position.coords.longitude;
-            lat = position.coords.latitude;
-            updateQuery();
-            map.setView(new L.LatLng(lat, lon), 8);
-            new L.CircleMarker([lat, lon], {radius: 8}).addTo(map);
-        }
-        
-        function findUserLoc() {
+        function findClosest(trails) {
             if(navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+
+                    var currentPosition = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);      //add current position to map
+                    
+
+                    //map.setView([position.coords.latitude, position.coords.longitude], 8);
+                    console.log("hola");
+                    
+                    function closest(currentPosition) {
+                        
+                        console.log(currentPosition); //does function have data?
+                        
+                        var gj = L.geoJson(trails); //load trails data
+                        
+                        var index = leafletKnn(gj).nearestLayer(L.latLng(currentPosition), 1);      //pass position latLng, number or returns desired, max_distance
+                        
+                        console.log(index); // result
+                    }
+                    closest(currentPosition);
+                })
+
+                // test currentPosition against all the put in locations and return nearest
                 
-                var timeoutVal = 10 * 1000 * 1000;
-                
-                navigator.geolocation.watchPosition(
-                    mapUserLoc,
-                    alertError,
-                    {enableHighAccuracy: true, timeout: timeoutVal, maximumAge: 0}
-                );
+                // map.setView here to include both the user's location and nearest
+
             } else {
-                alert("Geolocation is not supported by your browser :(");
+                // Browser doesn't support Geolocation
+                console.log("Geolocation is disabled");
             }
+        }
+                
             
-        function alertError(error) {
-            
-            var errors = {
-                1: 'Permission denied',
-                2: 'Position unavailable',
-                3: 'Request timeout'
-            };
-            alert("Error: " + errors[error.code]);
-        }
-        }
+//          function showPosition(position) {
+//              $('#location').html("<p>Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude + "</p>");
+//              map.setView([position.coords.latitude,position.coords.longitude],5);
+//          };
         
-        var lon,
-            lat,
-            total = 3;
         
-        function updateQuery() {
-            sublayers[0].set({
-                    sql: "WITH cities AS (SELECT cartodb_id, the_geom, the_geom_webmercator, trails FROM trails_wgs84 ORDER BY the_geom <-> ST_SetSRID(ST_Point("+lon+","+lat+"),4326) ASC LIMIT "+total+") SELECT null as cartodb_id",
-                    cartocss: $("#trailsSelect").text()
-            });
-        }  //SELECT null as cartodb_id"
-        
-         function findClosest() {
-            findUserLoc();
-            updateQuery();
-        }
+
             
         
+
     </script>
 </body>
 </html>
-Contact GitHub API Training Shop Blog About
-© 2016 GitHub, Inc. Terms Privacy Security Status Help
