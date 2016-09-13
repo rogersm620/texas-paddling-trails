@@ -268,7 +268,7 @@
                 }
             ]
         }
-        var trailLayer = cartodb.createLayer(map, trails).addTo(map)
+        cartodb.createLayer(map, trails, { https: true }).addTo(map)
             .on('done', function(layer) {
             
                 var sublayer = layer.getSubLayer(0);
@@ -291,7 +291,7 @@
                 }
             ]
         }
-        var accessLayer = cartodb.createLayer(map, accessPoints).addTo(map)
+        cartodb.createLayer(map, accessPoints, { https: true }).addTo(map)
             .on('done', function(layer) {
             
                 var sublayer = layer.getSubLayer(0);
