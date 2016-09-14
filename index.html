@@ -51,8 +51,7 @@
         right: 50px;
         height: 106px;
         background: none;
-        border-right: 0px solid #b08d67;
-        overflow-y: scroll;
+        border-right: 0px;
         z-index: 70;
     }
     h1 {
@@ -143,11 +142,11 @@
         <div class="legend-title">Legend</div>
             <ul>
 	            <li>
-		          <div class="bullet" style="background:#d46a6a"></div>
+		          <div class="bullet" style="background:#F75600"></div>
 		              Access Point
 	            </li>
                 <li>
-		          <div class="bullet" style="background:#801515"></div>
+		          <div class="bullet" style="background:#F7BE00"></div>
 		              Paddling Trail
 	            </li>
             </ul>
@@ -199,9 +198,9 @@
     <script type="cartocss/html" id="trails2">
     /** simple visualization */
         #trails_wgs84{
-            line-color: #801515;
+            line-color: #F7BE00;
             line-width: 5;
-            line-opacity: 0.7;
+            line-opacity: 0.9;
             line-dasharray: 7,3;
         }
     </script>
@@ -218,13 +217,13 @@
     /** simple visualization */
         #access_points{
             marker-fill-opacity: 0.8;
-            marker-line-color: #FFF;
-            marker-line-width: 1;
-            marker-line-opacity: 1;
+            marker-line-color: #CD4F0B;
+            marker-line-width: .8;
+            marker-line-opacity: .8;
             marker-placement: point;
             marker-type: ellipse;
-            marker-width: 11;
-            marker-fill: #d46a6a;
+            marker-width: 13;
+            marker-fill: #F75600;
             marker-allow-overlap: true;
         }
     </script>
@@ -256,7 +255,7 @@
         
         var layerUrl = 'https://rogersm620.carto.com/api/v2/viz/cdecec02-7125-11e6-b0bf-0e3ebc282e83/viz.json';
         
-        var allLayers = []
+        var mapLayers = []
         
         var trails = {
             user_name: 'rogersm620',
@@ -306,8 +305,8 @@
         
         var sourcesLayers = {       //formatting for layer selector
               "<b style='color:#801515'>Paddling Trails</>": trails,
-              "<b style='color:#d46a6a'>Access Points</>": accessLayer
-        };
+              "<b style='color:#d46a6a'>Access Points</>": accessPoints
+        }
         
         
         function mapUserLoc(position) {
@@ -349,7 +348,7 @@
             findUserLoc();
         }
         
-       // L.control.layers(null, sourcesLayers, { collapsed:false, position:'bottomright' }).addTo(map);      //add layer selector box
+      // L.control.layers(null, sourcesLayers, { collapsed:false, position:'bottomright' }).addTo(map);      //add layer selector box
             
         
     </script>
