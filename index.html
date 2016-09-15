@@ -20,6 +20,18 @@
         font-family: 'Anton', sans-serif;
         background: whitesmoke;
     }
+    #about {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        padding: 20px 20%;
+        background: rgba(255,255,255,.7);
+        z-index: 1000;
+        font-family: sans-serif;
+        color: #444;
+        display: none;
+    }
     div.cartodb-tooltip {
         position: absolute;
         left: 15px;
@@ -156,6 +168,12 @@
         </div>
     <div id="location" class="u-padding-m"></div>
     
+    <div id='about'>
+        <h2>About this map</h2>
+        <p>blah bla bla bla bla</p>
+    </div>    
+    
+    
     <script>
         
         var host = "rogersm620.github.io";
@@ -230,6 +248,19 @@
     
     
     <script>
+        
+        $('#top-panel').on('click', function() {
+            if($('#about').css('display') == 'none') {
+                $('#about').css('display', 'inline-block');
+            } else {
+                // you could change it back here, but my example here blocks it from being clicked if the about is visible
+            }
+        });
+        
+        $('#about').on('click', function() {
+            $('#about').css('display', 'none');
+
+        })
         
         var baseLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.{ext}', {
 	       attribution: 'This map was created by <a href="http://campfiremapping.com">Ryan Rogers</a>, 2016...Tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
