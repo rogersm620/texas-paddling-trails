@@ -20,17 +20,6 @@
         font-family: 'Anton', sans-serif;
         background: whitesmoke;
     }
-    #about {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        padding: 20px 20%;
-        background: #417EC2;
-        z-index: 1000;
-        font-family: 'Anton', sans-serif;
-        color: #444;
-        display: none;
-    }
     div.cartodb-tooltip {
         position: absolute;
         left: 15px;
@@ -59,26 +48,11 @@
         position: absolute;
         left: 15px;
         top: 10px;
-        width:107px;
+        right: 50px;
         height: 106px;
         background: none;
         border-right: 0px;
         z-index: 70;
-    }
-    #top-panel:active {
-        position: absolute;
-        left: 16px;
-        top: 9px;
-    }
-    #loader {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, -50%);
-        height: 120px;
-        width: 120px;
-        z-index: 100;
     }
     h1 {
         padding: 15px 25px 8px 15px;
@@ -90,19 +64,6 @@
         font-size: 2em;
         text-align: center;
         z-index: 70;
-    }
-    h2 {
-        margin: 0;
-        background: none;
-        color: #043164; 
-        font-weight: 400;
-        font-size: 1.4em;
-        text-align: left;
-        z-index: 70;
-    }
-    h3 {
-        color: whitesmoke;
-        font-size: .7em;
     }
     h4 {
         font-size: 1em;
@@ -132,20 +93,11 @@
     ul {
         font-size: 1em;    
     }
-    p {
+    a {
         color: whitesmoke;
-        font-size: .8em;
-        text-align: left;
-    }
-    #about a {
-        color: #f7be00;
-        font-size: 1.3em;
-        text-decoration: none;
-    }
-    #about a:hover {
-        color: #f7be00;
-        font-size: 1.3em;
-        text-decoration: underline;
+        font-size: 1em;
+        background: transparent;
+        text-align: center;
     }
     #locateButton {
         position: absolute;
@@ -158,7 +110,7 @@
         border-radius: 3px;
         color: whitesmoke;
         text-align: center;
-        z-index: 99;
+        z-index: 100;
         box-shadow: outside 0px 1px 0px 0px #54a3f7;
         text-shadow: 0px 1px 0px #154682;
         
@@ -173,9 +125,6 @@
         left: 15px;
         bottom: 100px;
     }
-    #legend {
-        text-align: right;
-    }
     
     
     </style>
@@ -185,36 +134,27 @@
     
     <div id='top-panel'>
         <img src="images/logo_paddlingtrls.gif" alt="logo">
-        
+        <h1>Texas Paddling Trails</h1>
                 
     </div>
     <div id="map"></div>
-    <div id="legend" class='cartodb-legend custom'>	
-        <div style="text-align:center" class="legend-title">Legend</div>
+    <div class='cartodb-legend custom'>	
+        <div class="legend-title">Legend</div>
             <ul>
 	            <li>
 		          <div class="bullet" style="background:#F75600"></div>
-                      Access Point
+		              Access Point
 	            </li>
                 <li>
-		          <div class="line" style="border-bottom: 3.5px dashed #f7be00;width: 10px;display: inline-block;position: relative;top: -3px;margin-right: 5px;"></div>
+		          <div class="line" style="border-bottom: 4px dashed #f7be00;width: 14px;display: inline-block;position: relative;top: -3px;margin-right: 5px;"></div>
 		              Paddling Trail
 	            </li>
             </ul>
     </div>
     <div id='locateButton'>
-        <a class="button">Locate Me!</a>
+        <a onclick="findClosest()" class="button">Locate Me!</a>
         </div>
     <div id="location" class="u-padding-m"></div>
-    <div id='about'>
-        <h2>About:</h2>
-         
-        <p><a href=http://tpwd.texas.gov/fishboat/boat/paddlingtrails/inland>Texas Paddling Trails</a><br>This map was created by <a href="http://campfiremapping.com">Ryan Rogers</a>, 2016<br>Tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> <br>Map data by <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>&copy; </p>
-        <h3>...tap to close</h3>
-    </div>
-    <div id="loader">
-        <img src="images/default.gif" alt="wait">
-    </div>
     
     <script>
         
@@ -240,7 +180,7 @@
      </div>
     </script>
     <script type="infowindow/html" id="trails">
-        <div class="cartodb-popup v2">
+    <div class="cartodb-popup v2">
         <div class="infowindow-custom">
           <a href="#close" class="cartodb-popup-close-button close">x</a>
           <div class="cartodb-popup-content-wrapper">
@@ -251,7 +191,7 @@
            </div>
            <div class="cartodb-popup-tip-container"></div>
         </div>
-    </script>
+      </script>
     
     
     
@@ -292,6 +232,7 @@
     <script>
         
         var baseLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.{ext}', {
+	       attribution: 'This map was created by <a href="http://campfiremapping.com">Ryan Rogers</a>, 2016...Tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 	       subdomains: 'abcd',
 	       minZoom: 0,
 	       maxZoom: 18,
@@ -361,25 +302,6 @@
                 });  
             })
         
-        $('#loader').hide();
-        
-        $('#top-panel').on('click', function() {
-            if($('#about').css('display') == 'none'){
-                $('#about').css('display', 'inline-block');
-            } else {
-                //change back...maybe here
-            }
-        });
-        
-        $('#about').on('click',function() {
-            $('#about').css('display', 'none');
-        });
-        
-        $('#locateButton').on('click', function() {
-            findUserLoc();
-            $('#loader').show();
-        });
-        
         function markerColor() {
             
         }
@@ -397,7 +319,6 @@
             
             map.setView(new L.LatLng(lat, lon), 8);
             new L.CircleMarker([lat, lon], {radius: 8}).addTo(map);
-            $('#loader').hide();
         }
         
         function findUserLoc() {
@@ -424,7 +345,16 @@
             alert("Error: " + errors[error.code]);
             }
         }
-
+        
+        
+        
+         function findClosest() {
+            findUserLoc();
+        }
+        
+      // L.control.layers(null, sourcesLayers, { collapsed:false, position:'bottomright' }).addTo(map);      //add layer selector box
+            
+        
     </script>
 </body>
 </html>
