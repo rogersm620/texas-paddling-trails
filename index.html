@@ -203,7 +203,7 @@
             </ul>
     </div>
     <div id='locateButton'>
-        <a class="button">Locate Me!</a>
+        <a onclick="findClosest()" class="button">Locate Me!</a>
         </div>
     <div id="location" class="u-padding-m"></div>
     <div id='about'>
@@ -375,10 +375,10 @@
             $('#about').css('display', 'none');
         });
         
-        $('#locateButton').on('click', function() {
-            findUserLoc();
-            $('#loader').show();
-        });
+//        $('#locateButton').on('click', function() {
+//            findUserLoc();
+//            $('#loader').show();
+//        });
         
         function markerColor() {
             
@@ -423,6 +423,11 @@
                 };
             alert("Error: " + errors[error.code]);
             }
+        }
+        
+        function findClosest() {
+            findUserLoc();
+            $('#loader').show();
         }
 
     </script>
