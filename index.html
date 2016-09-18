@@ -70,6 +70,13 @@
         left: 16px;
         top: 9px;
     }
+    #top-panel p {
+        font-size: .8em;
+        margin: 8px 0 4px; 
+        padding: 0 25px 0 15px;
+        text-align: center;
+        color: #0951a1;
+    }
     #loader {
         position: absolute;
         top: 50%;
@@ -109,18 +116,6 @@
         padding: 0 0 0 0;
         color: #0951a1;
         background: white;
-    }
-    #top-panel p {
-        margin: 8px 0 4px; 
-        padding: 0 25px 0 15px;
-        color: whitesmoke;
-        text-align: left;
-        font-size: .8em; 
-    }
-    #top-panel p:after {
-        content: '';
-        display: block;
-        clear: both;
     }
     #top-panel img {
         float: left;
@@ -185,6 +180,7 @@
     
     <div id='top-panel'>
         <img src="images/logo_paddlingtrls.gif" alt="logo">
+        <p>Click for Info</p>
         
                 
     </div>
@@ -374,22 +370,6 @@
         $('#about').on('click',function() {
             $('#about').css('display', 'none');
         });
-        
-//        $('#locateButton').on('click', function() {
-//            findUserLoc();
-//            $('#loader').show();
-//        });
-        
-        function markerColor() {
-            
-        }
-        
-        
-        var sourcesLayers = {       //formatting for layer selector
-              "<b style='color:#801515'>Paddling Trails</>": trails,
-              "<b style='color:#d46a6a'>Access Points</>": accessPoints
-        }
-        
         
         function mapUserLoc(position) {
             lon = position.coords.longitude;
