@@ -9,171 +9,171 @@
     <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
 
     
-    <style>
-    html, body, #map {
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        background: whitesmoke;
-    }
-    body {
-        font-family: 'Anton', sans-serif;
-        background: whitesmoke;
-    }
-    #about {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        padding: 20px 20%;
-        background: #417EC2;
-        z-index: 1000;
-        font-family: 'Anton', sans-serif;
-        color: #444;
-        display: none;
-    }
-    div.cartodb-tooltip {
-        position: absolute;
-        left: 15px;
-        bottom: 20px;
-        padding: 8px 15px;
-        background: white;
-        border: 2px solid #0951a1;
-        border-radius: 3px;
-        color: #0951a1;
-        width: 100%;
-        height: 40%;
-        text-align: center;
-    }
-    div.cartodb-tooltip p {
-            background: white;
-    }
-    #map { 
-        position: absolute; 
-        left:0; 
-        bottom:0;
-        right: 0;
-        height:100%; 
-        background: whitesmoke;
-    }
-    #top-panel {
-        position: absolute;
-        left: 15px;
-        top: 10px;
-        width:107px;
-        height: 106px;
-        background: none;
-        border-right: 0px;
-        z-index: 70;
-    }
-    #top-panel:active {
-        position: absolute;
-        left: 16px;
-        top: 9px;
-    }
-    #top-panel p {
-        font-size: .8em;
-        margin: 8px 0 4px; 
-        padding: 0 25px 0 15px;
-        text-align: center;
-        color: #0951a1;
-    }
-    #loader {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, -50%);
-        height: 120px;
-        width: 120px;
-        z-index: 100;
-    }
-    h1 {
-        padding: 15px 25px 8px 15px;
-        margin: 0;
-        background: none;
-        color: #0951a1;
-        text-shadow: 2px 2px 2px #FFF; 
-        font-weight: 400;
-        font-size: 2em;
-        text-align: center;
-        z-index: 70;
-    }
-    h2 {
-        margin: 0;
-        background: none;
-        color: #043164; 
-        font-weight: 400;
-        font-size: 1.4em;
-        text-align: left;
-        z-index: 70;
-    }
-    h3 {
-        color: whitesmoke;
-        font-size: .7em;
-    }
-    h4 {
-        font-size: 1em;
-        padding: 0 0 0 0;
-        color: #0951a1;
-        background: white;
-    }
-    #top-panel img {
-        float: left;
-        margin: 0 0 0 0;
-    }
-    .cartodb-logo {
-        display:none!important;
-    }
-    ul {
-        font-size: 1em;    
-    }
-    p {
-        color: whitesmoke;
-        font-size: .8em;
-        text-align: left;
-    }
-    #about a {
-        color: #f7be00;
-        font-size: 1.3em;
-        text-decoration: none;
-    }
-    #about a:hover {
-        color: #f7be00;
-        font-size: 1.3em;
-        text-decoration: underline;
-    }
-    #locateButton {
-        position: absolute;
-        background: #0951a1;
-        bottom: 50px;
-        left: 15px;
-        width: 75px;
-        height: 30px;
-        padding: 8px 15px 4px;
-        border-radius: 3px;
-        color: whitesmoke;
-        text-align: center;
-        z-index: 99;
-        box-shadow: outside 0px 1px 0px 0px #54a3f7;
-        text-shadow: 0px 1px 0px #154682;
+<style>
+html, body, #map {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background: whitesmoke;
+}
+body {
+    font-family: 'Anton', sans-serif;
+    background: whitesmoke;
+}
+#about {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 20%;
+    background: #417EC2;
+    z-index: 1000;
+    font-family: 'Anton', sans-serif;
+    color: #444;
+    display: none;
+}
+div.cartodb-tooltip {
+    position: absolute;
+    left: 15px;
+    bottom: 20px;
+    padding: 8px 15px;
+    background: white;
+    border: 2px solid #0951a1;
+    border-radius: 3px;
+    color: #0951a1;
+    width: 100%;
+    height: 40%;
+    text-align: center;
+}
+div.cartodb-tooltip p {
+    background: white;
+}
+#map { 
+    position: absolute; 
+    left:0; 
+    bottom:0;
+    right: 0;
+    height:100%; 
+    background: whitesmoke;
+}
+#top-panel {
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    width:107px;
+    height: 106px;
+    background: none;
+    border-right: 0px;
+    z-index: 70;
+}
+#top-panel:active {
+    position: absolute;
+    left: 16px;
+    top: 9px;
+}
+#top-panel p {
+    font-size: .8em;
+    margin: 8px 0 4px; 
+    padding: 0 25px 0 15px;
+    text-align: center;
+    color: #0951a1;
+}
+#loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    height: 120px;
+    width: 120px;
+    z-index: 100;
+}
+h1 {
+    padding: 15px 25px 8px 15px;
+    margin: 0;
+    background: none;
+    color: #0951a1;
+    text-shadow: 2px 2px 2px #FFF; 
+    font-weight: 400;
+    font-size: 2em;
+    text-align: center;
+    z-index: 70;
+}
+h2 {
+    margin: 0;
+    background: none;
+    color: #043164; 
+    font-weight: 400;
+    font-size: 1.4em;
+    text-align: left;
+    z-index: 70;
+}
+h3 {
+    color: whitesmoke;
+    font-size: .7em;
+}
+h4 {
+    font-size: 1em;
+    padding: 0 0 0 0;
+    color: #0951a1;
+    background: white;
+}
+#top-panel img {
+    float: left;
+    margin: 0 0 0 0;
+}
+.cartodb-logo {
+    display:none!important;
+}
+ul {
+    font-size: 1em;    
+}
+p {
+    color: whitesmoke;
+    font-size: .8em;
+    text-align: left;
+}
+#about a {
+    color: #f7be00;
+    font-size: 1.3em;
+    text-decoration: none;
+}
+#about a:hover {
+    color: #f7be00;
+    font-size: 1.3em;
+    text-decoration: underline;
+}
+#locateButton {
+    position: absolute;
+    background: #0951a1;
+    bottom: 50px;
+    left: 15px;
+    width: 75px;
+    height: 30px;
+    padding: 8px 15px 4px;
+    border-radius: 3px;
+    color: whitesmoke;
+    text-align: center;
+    z-index: 99;
+    box-shadow: outside 0px 1px 0px 0px #54a3f7;
+    text-shadow: 0px 1px 0px #154682;
         
     }
-    #locateButton:active {
-        position: absolute;
-        bottom: 51px;
-        left: 16px;
-    }
-    #location {
-        position: absolute;
-        left: 15px;
-        bottom: 100px;
-    }
-    #legend {
-        text-align: right;
-    }
+#locateButton:active {
+    position: absolute;
+    bottom: 51px;
+    left: 16px;
+}
+#location {
+    position: absolute;
+    left: 15px;
+    bottom: 100px;
+}
+#legend {
+    text-align: right;
+}
     
     
-    </style>
+</style>
 </head>
 <body>
     
@@ -212,17 +212,17 @@
         <img src="images/default.gif" alt="wait">
     </div>
     
-    <script>
+<script>
         
-        var host = "rogersm620.github.io";
-        if ((host == window.location.host) && (window.location.protocol != "https:"))
+    var host = "rogersm620.github.io";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
             window.location.protocol = "https";
-    </script>
+</script>
 
-    <script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/cartodb.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
+<script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/cartodb.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
     
-    <script type="infowindow/html" id="access">
+<script type="infowindow/html" id="access">
      <div class="cartodb-popup v2">
         <div class="infowindow-custom">
           <a href="#close" class="cartodb-popup-close-button close">x</a>
@@ -234,8 +234,8 @@
          </div>
         <div class="cartodb-popup-tip-container"></div>
      </div>
-    </script>
-    <script type="infowindow/html" id="trails">
+</script>
+<script type="infowindow/html" id="trails">
         <div class="cartodb-popup v2">
         <div class="infowindow-custom">
           <a href="#close" class="cartodb-popup-close-button close">x</a>
@@ -247,11 +247,11 @@
            </div>
            <div class="cartodb-popup-tip-container"></div>
         </div>
-    </script>
+ </script>
     
     
     
-    <script type="cartocss/html" id="trails2">
+<script type="cartocss/html" id="trails2">
     /** simple visualization */
         #trails_wgs84{
             line-color: #F7BE00;
@@ -259,8 +259,8 @@
             line-opacity: 0.9;
             line-dasharray: 7,3;
         }
-    </script>
-    <script type="cartocss/html" id="trailsSelect">
+</script>
+<script type="cartocss/html" id="trailsSelect">
     /** simple visualization */
         trailsSelect{
             line-color: #FFFF00;
@@ -268,8 +268,8 @@
             line-opacity: 0.5;
             line-dasharray: 7,3;
         }
-    </script>
-    <script type="cartocss/html" id="accessPoints">
+</script>
+<script type="cartocss/html" id="accessPoints">
     /** simple visualization */
         #access_points{
             marker-fill-opacity: 0.8;
@@ -282,134 +282,134 @@
             marker-fill: #F75600;
             marker-allow-overlap: true;
         }
-    </script>
+</script>
     
     
-    <script>
+<script>
+    // basemap tiles   
+    var baseLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.{ext}', {
+	   subdomains: 'abcd',
+	   minZoom: 0,
+	   maxZoom: 18,
+	   ext: 'png',
+       maxBounds: L.latLngBounds([28.02, -100.52],[33.86, -94.32])
+    });  
+    
+    //map
+    var map = L.map('map', { 
+        scrollWheelZoom: false,
+        zoomControl: false,
+        dragging: true,
+        touchZoom: true,
+        center: [31.62, -96.49], 
+        zoom: 6 
+    });
         
-        var baseLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.{ext}', {
-	       subdomains: 'abcd',
-	       minZoom: 0,
-	       maxZoom: 18,
-	       ext: 'png',
-           maxBounds: L.latLngBounds([28.02, -100.52],[33.86, -94.32])
-        });  
+    L.control.zoom({position:'topright'}).addTo(map);   //reposition zoom control, add
         
-        var map = L.map('map', { 
-            scrollWheelZoom: false,
-            zoomControl: false,
-            dragging: true,
-            touchZoom: true,
-            center: [31.62, -96.49], 
-            zoom: 6 
-        });
+    map.addLayer(baseLayer);    //add basemap
+    
+    //carto key
+    var layerUrl = 'https://rogersm620.carto.com/api/v2/viz/cdecec02-7125-11e6-b0bf-0e3ebc282e83/viz.json';
         
-        L.control.zoom({position:'topright'}).addTo(map);
+    var mapLayers = []
         
-        map.addLayer(baseLayer);
-        
-        var layerUrl = 'https://rogersm620.carto.com/api/v2/viz/cdecec02-7125-11e6-b0bf-0e3ebc282e83/viz.json';
-        
-        var mapLayers = []
-        
-        var trails = {
-            user_name: 'rogersm620',
-            type: 'cartodb',
-            sublayers: [
-                {
-                    sql: "SELECT * FROM trails_wgs84",
-                    cartocss: $("#trails2").text()
-                }
-            ]
-        }
-        cartodb.createLayer(map, trails, { https: true }).addTo(map)
-            .on('done', function(layer) {
+    var trails = {      //sql call to create trails layer, no one in the universe knows how to get back to this layer. It's totally magic or something. Call Harry Potter
+        user_name: 'rogersm620',
+        type: 'cartodb',
+        sublayers: [
+            {
+                sql: "SELECT * FROM trails_wgs84",
+                cartocss: $("#trails2").text()
+            }
+        ]
+    }
+    cartodb.createLayer(map, trails, { https: true }).addTo(map)    //add magical layer to map
+        .on('done', function(layer) {       //function to create popup
             
-                var sublayer = layer.getSubLayer(0);
+            var sublayer = layer.getSubLayer(0);
                             
-                sublayer.setInteraction(true);
-                cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(0), ['trails', 'distance', 'address'], {
-                    infowindowTemplate: $('#trails').html(),
-                    templateType: 'mustache'
-                });  
-          })
+            sublayer.setInteraction(true);
+            cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(0), ['trails', 'distance', 'address'], {
+                infowindowTemplate: $('#trails').html(),
+                templateType: 'mustache'
+            });  
+        })
         
         
-        var accessPoints = {
-            user_name: 'rogersm620',
-            type: 'cartodb',
-            sublayers: [
-                {
-                    sql: "SELECT * FROM access_points",
-                    cartocss: $("#accessPoints").text()
-                }
-            ]
-        }
-        cartodb.createLayer(map, accessPoints, { https: true }).addTo(map)
-            .on('done', function(layer) {
+    var accessPoints = {    //sql call for access points layer, also magical.
+        user_name: 'rogersm620',
+        type: 'cartodb',
+        sublayers: [
+            {
+                sql: "SELECT * FROM access_points",
+                cartocss: $("#accessPoints").text()
+            }
+        ]
+    }
+    cartodb.createLayer(map, accessPoints, { https: true }).addTo(map)  //add access layer to map.
+        .on('done', function(layer) {       //function to create popup
             
-                var sublayer = layer.getSubLayer(0);
+            var sublayer = layer.getSubLayer(0);
             
-                sublayer.setInteraction(true);
-                cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(0), ['trail', 'accesspoin', 'type', 'lat', 'lng'], {
+            sublayer.setInteraction(true);
+            cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(0), ['trail', 'accesspoin', 'type', 'lat', 'lng'], {
                 infowindowTemplate: $('#access').html(),
                 templateType: 'mustache'
-                });  
-            })
+            });  
+        })
         
-        $('#loader').hide();
+    $('#loader').hide();        //don't show up yet, Loader gif!
         
-        $('#top-panel').on('click', function() {
-            if($('#about').css('display') == 'none'){
-                $('#about').css('display', 'inline-block');
-            } else {
-                //change back...maybe here
-            }
-        });
-        
-        $('#about').on('click',function() {
-            $('#about').css('display', 'none');
-        });
-        
-        function mapUserLoc(position) {
-            lon = position.coords.longitude;
-            lat = position.coords.latitude;
-            
-            map.setView(new L.LatLng(lat, lon), 8);
-            new L.CircleMarker([lat, lon], {radius: 8}).addTo(map);
-            $('#loader').hide();
+    $('#top-panel').on('click', function() {        //show about window on click
+        if($('#about').css('display') == 'none'){
+            $('#about').css('display', 'inline-block');
         }
+    });
         
-        function findUserLoc() {
-            if(navigator.geolocation) {
+    $('#about').on('click',function() {     //make about window go away
+        $('#about').css('display', 'none');
+    });
+        
+    function mapUserLoc(position) {     //adds user location to map
+        lon = position.coords.longitude;
+        lat = position.coords.latitude;
+            
+        map.setView(new L.LatLng(lat, lon), 8);
+        new L.CircleMarker([lat, lon], {radius: 8}).addTo(map);
+        $('#loader').hide();        //hide loading gif, we've got it!
+    }
+        
+    function findUserLoc() {        //function to call user location
+        if(navigator.geolocation) {
                 
-                var timeoutVal = 10 * 1000 * 1000;
+            var timeoutVal = 10 * 1000 * 1000;      //timeout
                 
-                navigator.geolocation.watchPosition(
-                    mapUserLoc,
-                    alertError,
+            navigator.geolocation.watchPosition(    //watchuser position...may call more than once, not sure.
+                mapUserLoc,
+                alertError,
                     {enableHighAccuracy: true, timeout: timeoutVal, maximumAge: 0}
                 );
-            } else {
+        } else {
                 alert("Geolocation is not supported by your browser :(");
-            }
+        }
             
-            function alertError(error) {
+        function alertError(error) {        //error if something doesn't go right
             
-                var errors = {
-                    1: 'Permission denied',
-                    2: 'Position unavailable',
-                    3: 'Request timeout'
-                };
+            var errors = {
+                1: 'Permission denied',
+                2: 'Position unavailable',
+                3: 'Request timeout'
+            };
             alert("Error: " + errors[error.code]);
             }
         }
         
-        function findClosest() {
-            findUserLoc();
-            $('#loader').show();
-        }
+    function findClosest() {        //code to make the locate button work
+        findUserLoc();
+        $('#loader').show();        //show loading gif
+    }
 
-    </script>
+</script>
 </body>
 </html>
